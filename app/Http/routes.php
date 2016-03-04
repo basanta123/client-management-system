@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 Route::get('/api/v1/client', 'ClientController@index');
 Route::post('/api/v1/client', 'ClientController@store');

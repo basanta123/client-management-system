@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use League\Csv\Reader;
 use League\Csv\Writer;
-use Validator;
-use Monolog\Logger;
 use Logentries\Handler;
+use Monolog\Logger;
+use Validator;
+
 
 class ClientController extends Controller
 {
@@ -19,10 +20,9 @@ class ClientController extends Controller
      */
     public function index()
     {
-        
-       $data = $this->getAllClient();
+        $data = $this->getAllClient();
 
-       return $data;
+        return $data;
     }
 
     /**
@@ -36,7 +36,7 @@ class ClientController extends Controller
      */
     public function store(Request $request)
     {
-         $validation = Validator::make($request->all(), [
+        $validation = Validator::make($request->all(), [
             'name'                      => 'required',
             'gender'                    => 'required',
             'phone'                     => 'required',
@@ -46,13 +46,12 @@ class ClientController extends Controller
             'date_of_birth'             => 'required',
             'education_background'      => 'required',
             'preferred_mode_of_contact' => 'required',
-
             ]);
 
-       if($validation->fails()){
+       if($validation->fails()) {
+           return $validation->messages();
 
-            return $validation->messages();
-         }
+       }
 
         $name                      = $request->input('name');
         $gender                    = $request->input('gender');
@@ -72,16 +71,13 @@ class ClientController extends Controller
         $log = new Logger('client');
         $log->pushHandler(new \Logentries\Handler\LogentriesHandler(env('LOG_ENTRIES_KEY')));
         $addData=$this->addClient($data);
-        if($addData){
+        if($addData) {
+        $log->addInfo('Client Inserted Successfully');
 
-            
-            $log->addInfo('Client Inserted Successfully');
-
-            return ('Client Inserted Successfully');
+        return ('Client Inserted Successfully');
         }
-        else{
-
-            $log->addWarning('Problem inserting client');
+        else {
+        $log->addWarning('Problem inserting client');
         }
     }
 

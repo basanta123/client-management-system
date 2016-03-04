@@ -105,7 +105,6 @@ class ClientController extends Controller
     {
         $csvData = Writer::createFromPath(base_path().'/data/client.csv','a+'); 
         $csvData->setDelimiter(';'); 
-        $csvData->setNewline('\r\n'); 
         $csvData->setOutputBOM(Writer::BOM_UTF8); 
 
         return $csvData->insertOne($data);

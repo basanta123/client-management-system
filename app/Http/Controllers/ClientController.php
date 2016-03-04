@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use Logentries\Handler;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 use League\Csv\Reader;
 use League\Csv\Writer;
+use Logentries\Handler;
 use Monolog\Logger;
 use Validator;
 
@@ -69,9 +69,9 @@ class ClientController extends Controller
         $log = new Logger('client');
         $log->pushHandler(new \Logentries\Handler\LogentriesHandler(env('LOG_ENTRIES_KEY')));
         $addData = $this->addClient($data);
-        if($addData) {
+        if ($addData) {
             $log->addInfo('Client Inserted Successfully');
-        return ('Client Inserted Successfully');
+            return ('Client Inserted Successfully');
         }
         else {
             $log->addWarning('Problem inserting client');
@@ -79,12 +79,12 @@ class ClientController extends Controller
     }
 
     /**
-    * Get all client's data from the csv file.
-    *
-    * uses league/csv package
-    *
-    *@return array of data
-    */
+     * Get all client's data from the csv file.
+     *
+     * uses league/csv package
+     *
+     *@return array of data
+     */
     private function getAllClient()
     {
         $csvData = Reader::createFromPath(base_path().'/data/client.csv');
@@ -95,17 +95,17 @@ class ClientController extends Controller
     }
 
     /**
-    * Add client's data to the csv file.
-    *
-    * Uses league/csv package
-    *
-    *@param array of data
-    */
+     * Add client's data to the csv file.
+     *
+     * Uses league/csv package
+     *
+     *@param array of data
+     */
     private function addClient($data)
     {
         $csvData = Writer::createFromPath(base_path().'/data/client.csv','a+'); 
-        $csvData->setDelimiter(";"); 
-        $csvData->setNewline("\r\n"); 
+        $csvData->setDelimiter(';'); 
+        $csvData->setNewline('\r\n'); 
         $csvData->setOutputBOM(Writer::BOM_UTF8); 
 
         return $csvData->insertOne($data);

@@ -24,40 +24,33 @@ class ClientController extends Controller
      */
     public function index()
     {
-        $data = [];
-        $data[] = $this->getAllClient();
-        return $data;
-       
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        
+       $data = $this->getAllClient();
+       return $data;
     }
 
     /**
      * Store a newly created resource in storage.
      *
+     * @package monolog for tracking logs
+     * @package logentries/handler for handling the logs of monolog to logentries.com
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
          $validation = Validator::make($request->all(), [
-            'name' => 'required',
+            'name'   => 'required',
             'gender' => 'required',
-            'phone' => 'required',
-            'email' => 'required|email',
-            'address'=>'required',
-            'nationality' => 'required',
+            'phone'  => 'required',
+            'email'  => 'required',
+            'address'=>  'required',
+            'nationality' =>'required',
             'date_of_birth' => 'required',
             'education_background' => 'required',
             'preferred_mode_of_contact' => 'required',
+
+            
        ]);
 
        if($validation->fails()){
@@ -75,13 +68,12 @@ class ClientController extends Controller
         $preferred_mode_of_contact = $request->input('preferred_mode_of_contact');
 
         $data = [
-        $name, $gender, $phone, $email, $address, $nationality, $date_of_birth, 
-        $education_background, $preferred_mode_of_contact
+        $name,$gender,$phone,$email,$address,$nationality,
+        $date_of_birth,$education_background,$preferred_mode_of_contact
         ];
 
         $log = new Logger('client');
-            $log->pushHandler(new \Logentries\Handler\LogentriesHandler
-            ('166c4117-525f-494a-9736-f37b7c6c7308'));
+        $log->pushHandler(new \Logentries\Handler\LogentriesHandler(env('LOG_ENTRIES_KEY')));
         $addData=$this->addClient($data);
         if($addData){
 
@@ -93,60 +85,13 @@ class ClientController extends Controller
 
             $log->addWarning('Problem inserting client');
         }
-
-
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 
     /**
     * Get all client's data from the csv file.
-    * 
-    * @return array of data
+    *
+    *@package league/csv
+    *@return array of data
     */
     private function getAllClient()
     {
@@ -159,6 +104,7 @@ class ClientController extends Controller
     /**
     * Add client's data to the csv file.
     *
+    *@package league/csv
     *@param array of data
     */
     private function addClient($data)

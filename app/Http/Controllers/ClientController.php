@@ -89,7 +89,7 @@ class ClientController extends Controller
     {
         $csvData = Reader::createFromPath(base_path().'/data/client.csv');
         $csvData->setDelimiter(';');
-        $csvData->setEncodingFrom("iso-8859-15");
+        $csvData->setEncodingFrom('iso-8859-15');
 
         return $csvData;
     }

@@ -3,17 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
-
 use League\Csv\Reader;
 use League\Csv\Writer;
 use Validator;
 use Monolog\Logger;
 use Logentries\Handler;
-
-
-
 
 class ClientController extends Controller
 {
@@ -26,6 +21,7 @@ class ClientController extends Controller
     {
         
        $data = $this->getAllClient();
+
        return $data;
     }
 
@@ -34,26 +30,27 @@ class ClientController extends Controller
      *
      * @package monolog for tracking logs
      * @package logentries/handler for handling the logs of monolog to logentries.com
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
          $validation = Validator::make($request->all(), [
-            'name'   => 'required',
-            'gender' => 'required',
-            'phone'  => 'required',
-            'email'  => 'required',
-            'address'=>  'required',
-            'nationality' =>'required',
-            'date_of_birth' => 'required',
-            'education_background' => 'required',
+            'name'                      => 'required',
+            'gender'                    => 'required',
+            'phone'                     => 'required',
+            'email'                     => 'required',
+            'address'                   => 'required',
+            'nationality'               => 'required',
+            'date_of_birth'             => 'required',
+            'education_background'      => 'required',
             'preferred_mode_of_contact' => 'required',
 
-            
-       ]);
+            ]);
 
        if($validation->fails()){
+
             return $validation->messages();
          }
 
@@ -79,6 +76,7 @@ class ClientController extends Controller
 
             
             $log->addInfo('Client Inserted Successfully');
+
             return ('Client Inserted Successfully');
         }
         else{
@@ -91,6 +89,7 @@ class ClientController extends Controller
     * Get all client's data from the csv file.
     *
     *@package league/csv
+    *
     *@return array of data
     */
     private function getAllClient()
@@ -98,6 +97,7 @@ class ClientController extends Controller
         $csvData = Reader::createFromPath(base_path().'/data/client.csv');
         $csvData->setDelimiter(';');
         $csvData->setEncodingFrom("iso-8859-15");
+
         return $csvData;
     }
 
@@ -105,6 +105,7 @@ class ClientController extends Controller
     * Add client's data to the csv file.
     *
     *@package league/csv
+    *
     *@param array of data
     */
     private function addClient($data)
@@ -113,6 +114,7 @@ class ClientController extends Controller
         $csvData->setDelimiter(";"); 
         $csvData->setNewline("\r\n"); 
         $csvData->setOutputBOM(Writer::BOM_UTF8); 
+
         return $csvData->insertOne($data);
 
     }

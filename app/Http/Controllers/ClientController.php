@@ -30,7 +30,7 @@ class ClientController extends Controller
      * uses monolog for tracking logs
      * uses logentries/handler for handling the logs of monolog to logentries.com
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -48,7 +48,7 @@ class ClientController extends Controller
             ]);
 
        if ($validation->fails()) {
-          return $validation->messages();
+           return $validation->messages();
        }
 
         $name = $request->input('name');
@@ -57,13 +57,13 @@ class ClientController extends Controller
         $email = $request->input('email');
         $address = $request->input('address');
         $nationality = $request->input('nationality');
-        $date_of_birth = $request->input('date_of_birth');
-        $education_background = $request->input('education_background');
-        $preferred_mode_of_contact = $request->input('preferred_mode_of_contact');
+        $dateOFBirth = $request->input('date_of_birth');
+        $educationBackground = $request->input('education_background');
+        $prefModeOfContact = $request->input('preferred_mode_of_contact');
 
         $data = [
         $name, $gender, $phone, $email, $address, $nationality,
-        $date_of_birth, $education_background, $preferred_mode_of_contact
+        $dateOFBirth, $educationBackground, $prefModeOfContact
         ];
 
         $log = new Logger('client');
@@ -73,9 +73,9 @@ class ClientController extends Controller
             $log->addInfo('Client Inserted Successfully');
             return ('Client Inserted Successfully');
         }
-        else {
-            $log->addWarning('Problem inserting client');
-        }
+
+        $log->addWarning('Problem inserting client');
+        
     }
 
     /**
@@ -103,25 +103,10 @@ class ClientController extends Controller
      */
     private function addClient($data)
     {
-        $csvData = Writer::createFromPath(base_path().'/data/client.csv','a+'); 
-        $csvData->setDelimiter(';'); 
-        $csvData->setOutputBOM(Writer::BOM_UTF8); 
+        $csvData = Writer::createFromPath(base_path().'/data/client.csv', 'a+');
+        $csvData->setDelimiter(';');
+        $csvData->setOutputBOM(Writer::BOM_UTF8);
 
         return $csvData->insertOne($data);
     }
-}
-
-
-
-        
-
-   
-
-
-
-        
-    
-       
-    
-
-    
+}    

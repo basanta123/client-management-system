@@ -63,7 +63,7 @@ class ClientController extends Controller
 
         $data = [
         $name, $gender, $phone, $email, $address, $nationality,
-        $dateOFBirth, $educationBackground, $prefModeOfContact
+        $dateOFBirth, $educationBackground, $prefModeOfContact,
         ];
 
         $log = new Logger('client');
@@ -71,11 +71,11 @@ class ClientController extends Controller
         $addData = $this->addClient($data);
         if ($addData) {
             $log->addInfo('Client Inserted Successfully');
-            return ('Client Inserted Successfully');
+            return 'Client Inserted Successfully';
         }
 
         $log->addWarning('Problem inserting client');
-        
+
     }
 
     /**
@@ -109,4 +109,5 @@ class ClientController extends Controller
 
         return $csvData->insertOne($data);
     }
+
 }    

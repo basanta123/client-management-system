@@ -3,8 +3,7 @@
 
 ## Code Quality
 
-
-[![Code Climate](https://codeclimate.com/github/basanta123/client-management-system/badges/gpa.svg)](https://codeclimate.com/github/basanta123/client-management-system)
+[![Code Climate](https://codeclimate.com/repos/56db22a9b86182796c010820/badges/f5521d15de565dc9566e/gpa.svg)](https://codeclimate.com/repos/56db22a9b86182796c010820/feed)
 
 ## Code Style
 

@@ -1,8 +1,17 @@
 # Client Management System
 
-[![Demo Link](http://clientmanagement-apilaravel.rhcloud.com/]
 
-[![Author]Basanta Dhakal](https://github.com/basanta123/)
+## Code Quality
+
+
+[![Code Climate](https://codeclimate.com/repos/56db22a9b86182796c010820/feed/badges/gpa.svg)](https://codeclimate.com/repos/56db22a9b86182796c010820/feed
+
+
+## Code Style
+
+[![StyleCI](https://styleci.io/repos/52873783/shield)](https://styleci.io/repos/52873783)
+
+##Description
 
 A simple application that takes the client data as an input from the form ,saves it in a CSV file and displays the client data from CSV file.The datas of the client are:
 
@@ -16,6 +25,10 @@ A simple application that takes the client data as an input from the form ,saves
     7.Date of birth
     8.Education background
     9.Preferred mode of contact 
+
+    Demo link:
+    http://clientmanagement-apilaravel.rhcloud.com/
+
 
 
 ## Framework

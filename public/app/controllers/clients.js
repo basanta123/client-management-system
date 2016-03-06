@@ -38,7 +38,6 @@ app.controller('clientsController', function($scope, $http, API_URL) {
             location.reload();
         }).error(function(response) {
             console.log(response);
-            alert('This is embarassing. An error has occured. Please check the log for details');
             
         });
     }

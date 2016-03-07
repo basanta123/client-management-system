@@ -16,10 +16,10 @@ class ClientTest extends TestCase
      */
     public function testAllClient()
     {
-      $this->client = new ClientController();  
-      $response = $this->call('GET', '/api/v1/client');
-      $this->client->getALLClient();
-      $this->assertEquals(200, $response->status());
+        $this->client = new ClientController();
+        $response = $this->call('GET', '/api/v1/client');
+        $this->client->getALLClient();
+        $this->assertEquals(200, $response->status());
     }
 
     /**
@@ -29,8 +29,8 @@ class ClientTest extends TestCase
      */
     public function testAddNewClient()
     {
-      $response= $this->call('POST', '/api/v1/client');
-      $this->see('Name field is required');
-      $this->assertEquals(200, $response->status());
+        $response= $this->call('POST', '/api/v1/client');
+        $this->see('Name field is required');
+        $this->assertEquals(200, $response->status());
     }
 }

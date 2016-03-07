@@ -1,5 +1,9 @@
 # Client Management System
 
+## Build
+
+[![Build Status](https://travis-ci.org/basanta123/client-management-system.svg?branch=master)](https://travis-ci.org/basanta123/client-management-system)
+
 
 ## Code Quality
 

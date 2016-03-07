@@ -31,6 +31,7 @@ class ClientController extends Controller
      * uses logentries/handler for handling the logs of monolog to logentries.com
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -75,7 +76,6 @@ class ClientController extends Controller
         }
 
         $log->addWarning('Problem inserting client');
-
     }
 
     /**
@@ -109,4 +109,5 @@ class ClientController extends Controller
 
         return $csvData->insertOne($data);
     }
+
 }    

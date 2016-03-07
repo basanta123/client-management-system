@@ -28,8 +28,8 @@ A simple application that takes the client data as an input from the form ,saves
     8.Education background
     9.Preferred mode of contact 
 
-    [Demo](http://clientmanagement-apilaravel.rhcloud.com/).
-    
+   The demo is  [here](http://clientmanagement-apilaravel.rhcloud.com/).
+
 
 ## Framework
 

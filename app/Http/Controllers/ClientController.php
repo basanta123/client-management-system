@@ -30,7 +30,7 @@ class ClientController extends Controller
      * uses monolog for tracking logs
      * uses logentries/handler for handling the logs of monolog to logentries.com
      *
-     * @param \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -47,9 +47,9 @@ class ClientController extends Controller
             'preferred_mode_of_contact' => 'required',
             ]);
 
-       if ($validation->fails()) {
-           return $validation->messages();
-       }
+        if ($validation->fails()) {
+            return $validation->messages();
+        }
 
         $name = $request->input('name');
         $gender = $request->input('gender');
@@ -85,7 +85,7 @@ class ClientController extends Controller
      *
      *@return array of data
      */
-    private function getAllClient()
+    public function getAllClient()
     {
         $csvData = Reader::createFromPath(base_path().'/data/client.csv');
         $csvData->setDelimiter(';');
@@ -109,5 +109,4 @@ class ClientController extends Controller
 
         return $csvData->insertOne($data);
     }
-
 }    

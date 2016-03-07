@@ -50,6 +50,7 @@ PHPUNIT
 ## Deployment
 
 This application is deployed to the openshift.The deployment process is:
+
 1.Login to the openshift,Create a new HHVM application.
 2.Application clone code is given after successfully created the application.
 3.Clone the application with that code into the local working directory

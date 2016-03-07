@@ -29,7 +29,7 @@ class ClientTest extends TestCase
      */
     public function testAddNewClient()
     {
-        $response= $this->call('POST', '/api/v1/client');
+        $response = $this->call('POST', '/api/v1/client');
         $this->see('Name field is required');
         $this->assertEquals(200, $response->status());
     }

@@ -2,3 +2,5 @@ languages:
   PHP: true
 exclude_paths:
 - "public/app/lib/angular/angular.min.js"
+- "public/js/jquery.min.js"
+- "public/js/bootstrap.min.js"

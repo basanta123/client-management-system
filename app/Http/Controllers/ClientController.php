@@ -72,6 +72,7 @@ class ClientController extends Controller
         $addData = $this->addClient($data);
         if ($addData) {
             $log->addInfo('Client Inserted Successfully');
+
             return 'Client Inserted Successfully';
         }
 
@@ -109,5 +110,4 @@ class ClientController extends Controller
 
         return $csvData->insertOne($data);
     }
-
 }    

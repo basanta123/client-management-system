@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
 use League\Csv\Reader;
 use League\Csv\Writer;
@@ -110,5 +109,4 @@ class ClientController extends Controller
 
         return $csvData->insertOne($data);
     }
-
-}    
+}
